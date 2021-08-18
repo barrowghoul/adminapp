@@ -9,7 +9,7 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer', 'customer_name','transmitter', 'transmitter_name', 'folio', 'pac', 'total', 'efecto', 'estado', 'status'];
+    protected $fillable = ['customer', 'customer_name','transmitter', 'transmitter_name', 'folio', 'pac', 'total', 'efecto', 'estado', 'status', 'recaptcha'];
 
     public function transmitter(){
         return $this->belongsTo(Transmitter::class);
@@ -18,4 +18,5 @@ class Invoice extends Model
     public function customer(){
         return $this->belongsTo(Customer::class);
     }
+
 }

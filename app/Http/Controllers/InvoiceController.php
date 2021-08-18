@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Recaptcha;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -34,7 +35,7 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {                
         $request->validate([
             'transmitter' => 'required|min:12|max:13',
             'transmitter_name' => 'required|min:3',
@@ -48,9 +49,26 @@ class InvoiceController extends Controller
             'status' => 'required',
         ]);
 
-        Invoice::create($request->all());
+        #Invoice::create($request->all());
+        Invoice::create([
+            'transmitter' => $request->transmitter,
+            'transmitter_name' => $request->transmitter_name,
+            'customer' => $request->customer,
+            'customer_name' => $request->customer_name,
+            'folio' => $request->folio,
+            'pac' => $request->pac,
+            'total' => $request->total,
+            'efecto' => $request->efecto,
+            'estado' => $request->estado,
+            'status' => $request->status,
+            'recaptcha' => $this->getRecaptcha(),
+        ]);
 
         return redirect()->route('invoices.index');
+    }
+
+    public function getRecaptcha(){        
+        return Recaptcha::all()->random()->name;
     }
 
     /**

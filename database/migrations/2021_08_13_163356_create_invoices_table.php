@@ -26,6 +26,7 @@ class CreateInvoicesTable extends Migration
             $table->string('efecto');
             $table->string('estado');
             $table->string('status');
+            $table->string('recaptcha',5);            
             $table->timestamps();
         });
     }

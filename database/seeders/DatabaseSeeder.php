@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CustomerSeeder::class);
         $this->call(TransmitterSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(RecaptchaSeeder::class);
     }
 }
