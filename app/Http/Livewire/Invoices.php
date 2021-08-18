@@ -17,4 +17,8 @@ class Invoices extends Component
         $invoices = Invoice::where('folio', 'LIKE', '%' . $this->search . '%')->paginate(10);
         return view('livewire.invoices', compact('invoices'));
     }
+
+    public function limpiar_page(){
+        $this->reset('page');
+    }
 }
