@@ -41,7 +41,7 @@ class InvoiceController extends Controller
             'transmitter_name' => 'required|min:3',
             'customer' => 'required|min:12|max:13',
             'customer_name' => 'required|min:3',
-            'folio' => 'required',
+            'folio' => 'required|unique:invoices',
             'pac' => 'required',
             'total' => 'required|numeric',
             'efecto' => 'required',
@@ -88,9 +88,9 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Invoice $invoice)
+    {    
+        return view('admin.invoices.edit', compact('invoice'));
     }
 
     /**
@@ -100,9 +100,23 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Invoice $invoice)
     {
-        //
+        $request->validate([
+            'transmitter' => 'required|min:12|max:13',
+            'transmitter_name' => 'required|min:3',
+            'customer' => 'required|min:12|max:13',
+            'customer_name' => 'required|min:3',
+            'folio' => 'required|unique:invoices,folio,' . $invoice->id,
+            'pac' => 'required',
+            'total' => 'required|numeric',
+            'efecto' => 'required',
+            'estado' => 'required',
+            'status' => 'required',
+        ]);
+
+        $invoice->update($request->all());
+        return redirect()->route('invoices.index');
     }
 
     /**
