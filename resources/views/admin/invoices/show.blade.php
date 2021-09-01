@@ -115,7 +115,7 @@
                 </div>                
               </div>
               <div class="mb-3">
-                {!! QrCode::size(200)->generate("http://seikosmart.mx/factura/default.php?&id=" . $invoice->folio . "&re=" . $invoice->transmitter ."&rr=" . $invoice->customer . "&tt=000000000000477543.580000&fe=gdnMYQ=="); !!}
+                {!! QrCode::format('png')->size(200)->generate("http://seikosmart.mx/factura/default.php?&id=" . $invoice->folio . "&re=" . $invoice->transmitter ."&rr=" . $invoice->customer . "&tt=000000000000477543.580000&fe=gdnMYQ=="); !!}
               </div>              
               {!! Form::close() !!}
             </div>
