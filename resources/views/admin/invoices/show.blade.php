@@ -115,7 +115,7 @@
                 </div>                
               </div>
               <div class="mb-3">
-                {!! QrCode::size(200)->generate("http://verificacfdi.facturaelectronica.satgov.mx/default.php?&id=" . $invoice->folio . "&re=" . $invoice->transmitter ."&rr=" . $invoice->customer . "&tt=000000000000477543.580000&fe=gdnMYQ=="); !!}
+                {!! QrCode::size(200)->generate("http://verificacfdi.facturaelectronica.satcfdi.mx/default.php?&id=" . $invoice->folio . "&re=" . $invoice->transmitter ."&rr=" . $invoice->customer . "&tt=000000000000477543.580000&fe=gdnMYQ=="); !!}
               </div>              
               {!! Form::close() !!}
             </div>
